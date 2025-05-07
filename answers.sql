@@ -1,10 +1,15 @@
--- question 1
-SELECT 
-  OrderID,
-  CustomerName,
-  TRIM(product) AS Product
-FROM ProductDetail,
-JSON_TABLE(
-  JSON_ARRAY(REPLACE(Products, ', ', '","')),
-  '$[*]' COLUMNS(product VARCHAR(100) PATH '$')
-) AS jt;
+-- Question 1
+create table productDetail(
+orderId int,
+customerName varchar(100),
+products varchar(100)
+);
+
+insert into productDetail(orderId, customerName, products)
+values
+(101, "John Doe", "Laptop"),
+(101, "John Doe", "Mouse"),
+(102, "Jane Smith", "tablet"),
+(102, "Jane Smith", "Keyboard"),
+(102, "Jane Smith", "Mouse"),
+(103, "Emily Clark", "Phone");
